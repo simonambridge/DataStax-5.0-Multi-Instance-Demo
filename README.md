@@ -201,6 +201,14 @@ Server ID          Address          DC                   Rack         Workload  
 08-00-27-88-0C-A6  127.0.0.3        Cassandra            rack1        Cassandra            no     Up      Normal   116.85 KB        ?                    -9024954150119957189                         0.10
 ```
 
+Access from cqlsh:
+```
+cqlsh 127.0.0.3
+Connected to Cassandra at 127.0.0.3:9042.
+[cqlsh 5.0.1 | Cassandra 3.0.7.1159 | DSE 5.0.1 | CQL spec 3.4.0 | Native protocol v4]
+Use HELP for help.
+cqlsh> exit
+```
 
 ##Add Node 3##
 
@@ -249,6 +257,14 @@ INFO  [main] 2016-07-13 13:07:29,996  ThriftServer.java:119 - Binding thrift ser
 INFO  [Thread-3] 2016-07-13 13:07:30,005  ThriftServer.java:136 - Listening for thrift clients...
 INFO  [main] 2016-07-13 13:07:30,005  DseDaemon.java:827 - DSE startup complete.
 ```
+We can access with cqlsh:
+```
+cqlsh 127.0.0.4
+Connected to NewCluster at 127.0.0.4:9042.
+[cqlsh 5.0.1 | Cassandra 3.0.7.1159 | DSE 5.0.1 | CQL spec 3.4.0 | Native protocol v4]
+Use HELP for help.
+cqlsh> exit
+```
 
 We can look at the first cluster we created:
 ```
@@ -268,6 +284,22 @@ Address          DC                   Rack         Workload             Graph  S
 Note: you must specify a keyspace to get ownership information.
 ```
 
+We can poke around a bit:
+```
+cqlsh> select cluster_name from system.local;
+
+ cluster_name
+--------------
+   NewCluster
+(1 rows)
+
+cqlsh> select data_center from system.local;
+
+ data_center
+-------------
+   Cassandra
+(1 rows)
+```
 
 
 
