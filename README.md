@@ -97,6 +97,12 @@ Warning: Spark shuffle service port not set. Spark nodes will use the default bi
 Done.
 ```
 
+You can specify the rack ID e.g. if you are setting up nodes on a different machine (default is rack 1):
+```
+--rack=rack_name
+```
+
+
 The template filesystem structure for this new node will now have been created. You'll find configuration files in:
 
 ```
