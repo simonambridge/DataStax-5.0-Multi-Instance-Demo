@@ -58,7 +58,7 @@ ifconfig lo:2 127.0.0.4 netmask 255.0.0.0 up
 ```
 
 ###Create Aliases for the Virtual IPs###
-Update ```/etc/hosts``` to make easier with aliases:
+Update ```/etc/hosts``` to make it easier with aliases:
 ```
 127.0.0.2 node1 dse-node1
 127.0.0.3 node2 dse-node2
