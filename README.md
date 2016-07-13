@@ -80,7 +80,7 @@ We don't have a valid seed address here as we're creating the first node.
 
 So, now we know that we only need the installation of DSE to give us the binaries, config templates and filiesystem layout. We don't need the service that is pre-configured for a stand-alone instance.
 
-Lets add the first node:
+Lets add the first node. We'll call it node1 (so it will be called dse-node1), create a cluster called Cassandra, using the first of the IP aliases that we created. We don't have a seed to talk to so we use ourself as a seed:
 ```
 sudo dse add-node --node-id node1 --cluster Cassandra --listen-address 127.0.0.2 --rpc-address 127.0.0.2 --seeds 127.0.0.2
 Installing and configuring from /usr/share/dse/templates/
@@ -177,9 +177,8 @@ cqlsh> exit
 
 ##Add Node 2##
 
-Same command as before, same cluster name, this time with a different virtual IP address.
-
-> We  point to the first node that we created to use as a seed node
+Same command as before, same cluster name, this time with the next available virtual IP address.
+This time we  point to the first node that we created to use it as a seed node
 
 ```
 sudo dse add-node --node-id node2 --cluster Cassandra --listen-address 127.0.0.3 --rpc-address 127.0.0.3 --seeds 127.0.0.2
