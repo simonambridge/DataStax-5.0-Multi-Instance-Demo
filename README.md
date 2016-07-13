@@ -255,7 +255,6 @@ cqlsh> select data_center from system.local;
 Now we're going to create a new multi-instance managed node, but this time in a different cluster.
 
 Same command as before, different cluster name, different virtual IP address, and we don't have a seed address.
-> We  point to the first node that we created to use as a seed node
 
 ```
 sudo dse add-node --node-id node3 --cluster NewCluster --listen-address 127.0.0.4 --rpc-address 127.0.0.4 --seeds 127.0.0.4
