@@ -161,7 +161,7 @@ Done.
 sudo vi /etc/dse-node2/cassandra/cassandra-env.sh
 ```
 
-#Start The Node 2 Service###
+###Start The Node 2 Service###
 
 ```
 sudo service **dse-node2** start
