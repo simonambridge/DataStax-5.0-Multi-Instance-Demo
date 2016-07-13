@@ -211,7 +211,7 @@ Use HELP for help.
 cqlsh> exit
 ```
 
-We can have a peek:
+We can have a peek and see the cluster name we specified - the data cantre is also called Cassandra:
 ```
 cqlsh> select cluster_name from system.local;
 
@@ -301,7 +301,7 @@ Address          DC                   Rack         Workload             Graph  S
 Note: you must specify a keyspace to get ownership information.
 ```
 
-We can poke around a bit:
+We can poke around a bit in the second cluster and see that it has a different cluster name:
 ```
 cqlsh> select cluster_name from system.local;
 
