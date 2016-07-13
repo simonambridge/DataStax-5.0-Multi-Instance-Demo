@@ -277,5 +277,8 @@ Deleting /etc/init.d/dse-node1
 Deleting /etc/default/dse-node1
 Deleting /var/run/dse-node1
 ```
+Manual commands:
+```
 sudo rm -rf /var/lib/dse-node3
 sudo rm -rf /var/log/dse-node3
+```
