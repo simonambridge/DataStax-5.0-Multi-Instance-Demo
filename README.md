@@ -134,6 +134,7 @@ I set the port on the first node just so that it doesnt conflict with the port u
 
 ###Set the Node 1 JMX port ```JMX_PORT="7299"```###
 
+Edit the cassandra-emv.sh file for this node.
 Search for 7199 and change it to 7299
 
 ```
