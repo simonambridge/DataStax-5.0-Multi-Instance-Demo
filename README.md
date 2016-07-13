@@ -192,7 +192,7 @@ Same command as before, different cluster name, different virtual IP address, an
 > We  point to the first node that we created to use as a seed node
 
 ```
-sudo dse add-node --node-id node3 --cluster Cassandra2 --listen-address 127.0.0.4 --rpc-address 127.0.0.4 --seeds 127.0.0.4
+sudo dse add-node --node-id node3 --cluster NewCluster --listen-address 127.0.0.4 --rpc-address 127.0.0.4 --seeds 127.0.0.4
 Installing and configuring from /usr/share/dse/templates/
 
 + Setting up node dse-node3...
@@ -209,6 +209,11 @@ Set the jmx port JMX_PORT="7499"
 sudo vi /etc/dse-node3/cassandra/cassandra-env.sh
 ```
 
+Check your different cluster name ```cluster_name: NewCluster```
+```
+sudo vi /etc/dse-node3/cassandra/cassandra.yaml
+```
+
 ###Start The Node 3 Service###
 ```
 sudo service dse-node3 start
@@ -220,7 +225,14 @@ And again:
 ```
 sudo tail -100 /var/log/dse-node3/system.log
 ```
+We want to see:
+```
+INFO  [main] 2016-07-13 13:07:29,996  ThriftServer.java:119 - Binding thrift service to /127.0.0.4:9160
+INFO  [Thread-3] 2016-07-13 13:07:30,005  ThriftServer.java:136 - Listening for thrift clients...
+INFO  [main] 2016-07-13 13:07:30,005  DseDaemon.java:827 - DSE startup complete.
+```
 
+We can look at the first cluster we created:
 ```
 sudo dse dse-node2 dsetool ring
 Server ID          Address          DC                   Rack         Workload             Graph  Status  State    Load             Owns                 Token                                        Health [0,1]
@@ -230,11 +242,11 @@ Server ID          Address          DC                   Rack         Workload  
 Note: you must specify a keyspace to get ownership information.
 ```
 
-We can look at the second cluster
+We can look at the second cluster:
 ```
 sudo dse dse-node3 dsetool ring
 Address          DC                   Rack         Workload             Graph  Status  State    Load             Owns                 Token                                        Health [0,1]
-127.0.0.4        Cassandra            rack1        Cassandra            no     Up      Normal   88.15 KB         ?                    -6577610989629133512                         0.00
+127.0.0.4        Cassandra            rack1        Cassandra            no     Up      Normal   88.15 KB         ?                    -2000014393878253047                         0.00
 Note: you must specify a keyspace to get ownership information.
 ```
 
@@ -265,4 +277,5 @@ Deleting /etc/init.d/dse-node1
 Deleting /etc/default/dse-node1
 Deleting /var/run/dse-node1
 ```
-
+sudo rm -rf /var/lib/dse-node3
+sudo rm -rf /var/log/dse-node3
