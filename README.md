@@ -6,24 +6,35 @@ This helps customer ensure that large hardware resources are effectively utilize
 Making more efficient use of hardware Helps reduce hardware cost.
 
 ##Build a DSE Node##
+You can use a bare machine, an empty VM, a docker image, whatever. I recommend at least a couple of CPU's and 6GB+ prefereably 8GB.
+
+Most leading flavours of Linux supported. Here I'm using Ubuntu Precise64 that comes with the build I'm using.
+
 I thoroughly recommend you use Joel Jacobsone's latest vagrant build that provisions a single larger node designed to support multiple instances of DataStax Enterprise.
 
-Joel's Multi-Instance host repo is here (along with a great multi-node vagrant build if you want to a three node cluster with opscentre)
+Joel's Multi-Instance host repo is **here** (along with a great multi-node vagrant build if you want to a three node cluster with opscentre).
 
-After you've built the vagrant virtual box, if it isn't running, start it with:
+Start your VM and move on to the next section for configuration details.
+
+If you're using vagrant, after you've built the machine or vagrant virtual box, if it isn't running, start it with:
 
 ```
 vagrant up dse-node
 ```
+You can check what VM's are available to vagrant:
+```
+vagrant global-status
+```
+
 
 ##Configure The VM for DSE##
 
-Now log into the DSE node:
+Now log into the DSE node. For the vagrant build use:
 ```
 vagrant ssh dse-node
 ```
 
-You first need to update the ulimits so that your vargrant user can start DSE.
+You first need to update the ulimits so that your vargrant user (or whatever OS cassandra username you've used) can start DSE.
 There is a separate conf file to set ulimits for the cassandra user
 ```
 sudo vi /etc/security/limits.d/cassandra.conf
@@ -37,7 +48,7 @@ vagrant - as unlimited
 ```
 Now log out and ssh back into the box as the vagrant user in order to pick up the new ulimits.
 
-Back in the vagrant VM, we need to create some IP aliases for our new instances - use the ifconfig command:
+Back in the vagrant VM, we need to create some IP aliases for our new instances - use the ```ifconfig``` command:
 ```
 ifconfig lo:0 127.0.0.2 netmask 255.0.0.0 up
 ifconfig lo:1 127.0.0.3 netmask 255.0.0.0 up
@@ -46,11 +57,11 @@ ifconfig lo:2 127.0.0.4 netmask 255.0.0.0 up
 
 ##Add Node 1##
 
-###Use ````add-node``` to add a multi-instance node
+###Use the ````add-node``` utility to add a multi-instance node
 
-Use the add-node command. You can call your node what you like but it will be prefixed autoatically with ```dse-```. So ```node1``` will be ```dse-node1``` etc.
+You can call your node what you like but it will be prefixed autoatically with ```dse-```. So ```node1``` will be ```dse-node1``` etc.
 
-We don't have a valid seed address here as we're the first node.
+We don't have a valid seed address here as we're creating the first node.
 
 > NB Do not attempt to add a node to the default dse node service that gets created when you install DSE. It wont let you do it even if you use it as the seed address with the same cluster name (you will end up with two clusters each called Cassandra but on different ports). Shut it down and forget it ever existed.
 
@@ -81,11 +92,13 @@ byoh-env.sh  dse-env.sh  dserc-env.sh	 graph	   hadoop2-client  mahout  solr  sq
 ```
 
 Here you set whether you want it to be a Cassandra, Spark, Solr node etc:
-> ignore it if you just want Cassandra
+
+> ignore this if you just want Cassandra
 
 ```
 sudo cat /etc/default/dse-node1
 ```
+
 Data lives here:
 ```
 sudo ls /var/lib/dse-node1
@@ -97,7 +110,8 @@ Logs live here:
 sudo ls /var/log/dse-node1
 audit  debug.log  gremlin.log  output.log  spark  system.log
 ```
-Although add-node told you that it was setting up the JMX port, I found that it uses 7199 each time it runs (e.g. it doesnt appear to check if the port is in use) so you need to set the port yourself. 
+
+Although ```add-node``` told you that it was setting up the JMX port, I found that it uses 7199 each time it runs (e.g. it doesnt appear to check if the port is in use) so you need to set the port yourself. 
 
 I set the port on the first node just so that it doesnt conflict with the port used by the default dse service that I might want to start one day.
 
@@ -105,16 +119,19 @@ I set the port on the first node just so that it doesnt conflict with the port u
 ```
 sudo vi /etc/dse-node1/cassandra/cassandra-env.sh
 ```
+
 ###Start The Node 1 Service###
 ```
 sudo service dse-node1 start
  * Starting DSE daemons (dse-node1) dse-node1
 DSE daemons (dse-node1) starting with only Cassandra enabled (edit /etc/default/dse-node1 to enable other features)
 ```
+
 Check the log file to make sure everything's rosy:
 ```
 sudo tail -100 /var/log/dse-node1/system.log
 ```
+
 If all goes to plan you should see:
 ```
 INFO  [main] 2016-07-13 05:46:18,137  ThriftServer.java:119 - Binding thrift service to /127.0.0.2:9160
@@ -141,6 +158,7 @@ cqlsh> exit
 ##Add Node 2##
 
 Same command as before, same cluster name, this time with a different virtual IP address.
+
 > We  point to the first node that we created to use as a seed node
 
 ```
