@@ -346,7 +346,7 @@ cqlsh> select data_center from system.local;
 
 Use the ```remove-node``` tool:
 ```
-$ sudo dse remove-node node1
+$ sudo dse remove-node node1 --purge
 ##############################
 #
 # WARNING
@@ -367,7 +367,7 @@ Deleting /etc/init.d/dse-node1
 Deleting /etc/default/dse-node1
 Deleting /var/run/dse-node1
 ```
-Manual commands:
+Use the purge option to clean up data and logs or do it manually:
 ```
 sudo rm -rf /var/lib/dse-node3
 sudo rm -rf /var/log/dse-node3
