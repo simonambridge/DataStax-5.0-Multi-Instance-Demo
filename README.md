@@ -60,7 +60,7 @@ So, now we know that:
 
 Lets add the first node:
 ```
-sudo dse add-node --node-id **node1** --cluster **Cassandra** --listen-address **127.0.0.2** --rpc-address **127.0.0.2** --seeds **127.0.0.2**
+sudo dse add-node --node-id node1 --cluster Cassandra --listen-address 127.0.0.2 --rpc-address 127.0.0.2 --seeds 127.0.0.2
 Installing and configuring from /usr/share/dse/templates/
 
 + Setting up node dse-node1...
@@ -75,7 +75,7 @@ Done.
 The template filesystem structure for this new node will now have been created. You'll find configuration files in:
 
 ```
-sudo ls /etc/**dse-node1**
+sudo ls /etc/dse-node1
 byoh	     cassandra	 dse-node1.init  dse.yaml  hadoop	   hive    pig	 spark	tomcat
 byoh-env.sh  dse-env.sh  dserc-env.sh	 graph	   hadoop2-client  mahout  solr  sqoop
 ```
@@ -84,17 +84,17 @@ Here you set whether you want it to be a Cassandra, Spark, Solr node etc:
 > ignore it if you just want Cassandra
 
 ```
-sudo cat /etc/default/**dse-node1**
+sudo cat /etc/default/dse-node1
 ```
 Data lives here:
 ```
-sudo ls /var/lib/**dse-node1**
+sudo ls /var/lib/dse-node1
 commitlog  data  hints	saved_caches  spark
 ```
 
 Logs live here:
 ```
-sudo ls /var/log/**dse-node1**
+sudo ls /var/log/dse-node1
 audit  debug.log  gremlin.log  output.log  spark  system.log
 ```
 Although add-node told you that it was setting up the JMX port, I found that it uses 7199 each time it runs (e.g. it doesnt appear to check if the port is in use) so you need to set the port yourself. 
@@ -144,7 +144,7 @@ Same command as before, same cluster name, this time with a different virtual IP
 > We  point to the first node that we created to use as a seed node
 
 ```
-sudo dse add-node --node-id **node2** --cluster **Cassandra** --listen-address **127.0.0.3** --rpc-address **127.0.0.3** --seeds **127.0.0.2**
+sudo dse add-node --node-id node2 --cluster Cassandra --listen-address 127.0.0.3 --rpc-address 127.0.0.3 --seeds 127.0.0.2
 Installing and configuring from /usr/share/dse/templates/
 
 + Setting up node dse-node2...
@@ -164,7 +164,7 @@ sudo vi /etc/dse-node2/cassandra/cassandra-env.sh
 ###Start The Node 2 Service###
 
 ```
-sudo service **dse-node2** start
+sudo service dse-node2 start
  * Starting DSE daemons (dse-node2) dse-node2
 DSE daemons (dse-node2) starting with only Cassandra enabled (edit /etc/default/dse-node2 to enable other features)
 ```
@@ -176,7 +176,7 @@ sudo tail -100 /var/log/dse-node2/system.log
 
 How does my cluster look?
 ```
-sudo dse **dse-node1** dsetool ring
+sudo dse dse-node1 dsetool ring
 Server ID          Address          DC                   Rack         Workload             Graph  Status  State    Load             Owns                 Token                                        Health [0,1]
                                                                                                                                                          -9024954150119957189
 08-00-27-88-0C-A6  127.0.0.2        Cassandra            rack1        Cassandra            no     Up      Normal   133.53 KB        ?                    -9098225573757054999                         0.10
@@ -192,7 +192,7 @@ Same command as before, different cluster name, different virtual IP address, an
 > We  point to the first node that we created to use as a seed node
 
 ```
-sudo dse add-node --node-id **node3** --cluster **Cassandra2** --listen-address **127.0.0.4** --rpc-address **127.0.0.4** --seeds **127.0.0.4**
+sudo dse add-node --node-id node3 --cluster Cassandra2 --listen-address 127.0.0.4 --rpc-address 127.0.0.4 --seeds 127.0.0.4
 Installing and configuring from /usr/share/dse/templates/
 
 + Setting up node dse-node3...
@@ -211,7 +211,7 @@ sudo vi /etc/dse-node3/cassandra/cassandra-env.sh
 
 ###Start The Node 3 Service###
 ```
-sudo service **dse-node3** start
+sudo service dse-node3 start
  * Starting DSE daemons (dse-node3) dse-node3
 DSE daemons (dse-node3) starting with only Cassandra enabled (edit /etc/default/dse-node3 to enable other features)
 ```
@@ -222,7 +222,7 @@ sudo tail -100 /var/log/dse-node3/system.log
 ```
 
 ```
-sudo dse **dse-node2** dsetool ring
+sudo dse dse-node2 dsetool ring
 Server ID          Address          DC                   Rack         Workload             Graph  Status  State    Load             Owns                 Token                                        Health [0,1]
                                                                                                                                                          -9024954150119957189
 08-00-27-88-0C-A6  127.0.0.2        Cassandra            rack1        Cassandra            no     Up      Normal   133.53 KB        ?                    -9098225573757054999                         0.20
@@ -232,7 +232,7 @@ Note: you must specify a keyspace to get ownership information.
 
 We can look at the second cluster
 ```
-sudo dse **dse-node3** dsetool ring
+sudo dse dse-node3 dsetool ring
 Address          DC                   Rack         Workload             Graph  Status  State    Load             Owns                 Token                                        Health [0,1]
 127.0.0.4        Cassandra            rack1        Cassandra            no     Up      Normal   88.15 KB         ?                    -6577610989629133512                         0.00
 Note: you must specify a keyspace to get ownership information.
