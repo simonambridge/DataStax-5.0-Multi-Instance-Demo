@@ -34,7 +34,7 @@ Now log into the DSE node. For the vagrant build use:
 ```
 vagrant ssh dse-node
 ```
-
+###Update ulimits###
 You first need to update the ulimits so that your vargrant user (or whatever OS cassandra username you've used) can start DSE.
 There is a separate conf file to set ulimits for the cassandra user
 ```
@@ -49,12 +49,24 @@ vagrant - as unlimited
 ```
 Now log out and ssh back into the box as the vagrant user in order to pick up the new ulimits.
 
+###Create Vierual IP Addresses For The Instances###
 Back in the vagrant VM, we need to create some IP aliases for our new instances - use the ```ifconfig``` command:
 ```
 ifconfig lo:0 127.0.0.2 netmask 255.0.0.0 up
 ifconfig lo:1 127.0.0.3 netmask 255.0.0.0 up
 ifconfig lo:2 127.0.0.4 netmask 255.0.0.0 up
 ```
+
+###Create Aliases for the Virtual IPs###
+Update ```/etc/hosts``` to make easier with aliases:
+```
+127.0.0.2 node1 dse-node1
+127.0.0.3 node2 dse-node2
+127.0.0.4 node3 dse-node3
+```
+
+Now you can use e.g. ```cqlsh node3```.
+
 
 ##Add Node 1##
 
