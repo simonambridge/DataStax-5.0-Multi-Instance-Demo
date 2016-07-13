@@ -130,6 +130,9 @@ Although ```add-node``` told you that it was setting up the JMX port, I found th
 I set the port on the first node just so that it doesnt conflict with the port used by the default dse service that I might want to start one day.
 
 ###Set the Node 1 JMX port ```JMX_PORT="7299"```###
+
+Search for 7199 and change it to 7299
+
 ```
 sudo vi /etc/dse-node1/cassandra/cassandra-env.sh
 ```
@@ -189,6 +192,9 @@ Done.
 ```
 
 ###Set the Node 2 JMX port ```JMX_PORT="7399"```###
+
+Search for 7199 and change it to 7399
+
 ```
 sudo vi /etc/dse-node2/cassandra/cassandra-env.sh
 ```
@@ -261,6 +267,9 @@ Done.
 ```
 
 Set the jmx port JMX_PORT="7499"
+
+Search for 7199 and change it to 7499
+
 ```
 sudo vi /etc/dse-node3/cassandra/cassandra-env.sh
 ```
