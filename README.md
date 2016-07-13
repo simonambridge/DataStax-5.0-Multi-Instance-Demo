@@ -211,6 +211,22 @@ Use HELP for help.
 cqlsh> exit
 ```
 
+We can have a peek:
+```
+cqlsh> select cluster_name from system.local;
+
+ cluster_name
+--------------
+   Cassandra
+(1 rows)
+
+cqlsh> select data_center from system.local;
+
+ data_center
+-------------
+   Cassandra
+(1 rows)
+```
 ##Add Node 3##
 
 Now we're going to create a new multi-instance managed node, but this time in a different cluster.
