@@ -142,7 +142,7 @@ INFO  [main] 2016-07-13 05:46:18,145  DseDaemon.java:827 - DSE startup complete.
 
 We can check the cluster with the new multi-instance support - use the node name:
 ```
-sudo dse *dse-node1* dsetool ring
+sudo dse dse-node1 dsetool ring
 Address          DC                   Rack         Workload             Graph  Status  State    Load             Owns                 Token                                        Health [0,1]
 127.0.0.2        Cassandra            rack1        Cassandra            no     Up      Normal   133.53 KB        ?                    -9098225573757054999                         0.00
 ```
