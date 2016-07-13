@@ -209,7 +209,7 @@ Set the jmx port JMX_PORT="7499"
 sudo vi /etc/dse-node3/cassandra/cassandra-env.sh
 ```
 
-#Start The Node 3 Service###
+###Start The Node 3 Service###
 ```
 sudo service **dse-node3** start
  * Starting DSE daemons (dse-node3) dse-node3
