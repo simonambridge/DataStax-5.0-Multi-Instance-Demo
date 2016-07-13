@@ -255,6 +255,7 @@ Note: you must specify a keyspace to get ownership information.
 
 ##Things go wrong sometimes - if you need to remove a node....##
 
+Use the ```remove-node``` tool:
 ```
 $ sudo dse remove-node node1
 ##############################
