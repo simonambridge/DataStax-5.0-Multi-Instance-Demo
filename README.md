@@ -13,7 +13,7 @@ Most leading flavours of Linux supported. Here I'm using Ubuntu Precise64 that c
 
 I thoroughly recommend you use Joel Jacobsone's latest vagrant build that provisions a single larger node designed to support multiple instances of DataStax Enterprise.
 
-Joel's Multi-Instance host repo is https://github.com/joeljacobson/vagrant-ansible-cassandra (along with a great multi-node vagrant build if you want to a three node cluster with opscentre).
+Joel's Multi-Instance host repo is here https://github.com/joeljacobson/vagrant-ansible-cassandra (along with a great multi-node vagrant build here https://github.com/joeljacobson/vagrant-ansible-cassandra if you want to a three node cluster with opscentre).
 
 Start your VM and move on to the next section for configuration details.
 
