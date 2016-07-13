@@ -79,8 +79,9 @@ We don't have a valid seed address here as we're creating the first node.
 > NB Do not attempt to add a node to the default dse node service that gets created when you install DSE. It wont let you do it even if you use it as the seed address with the same cluster name (you will end up with two clusters each called Cassandra but on different ports). Shut it down and forget it ever existed.
 
 So, now we know that:
-*1We only need the installation of DSE to give us the binaries, config and filiesystem layout. We don't need the service that is pre-configured for a stand-alone instance.
-*2Multi-instance nodes seem to only want to talk to other multi-instance nodes.
+
+1. We only need the installation of DSE to give us the binaries, config and filiesystem layout. We don't need the service that is pre-configured for a stand-alone instance.
+2. Multi-instance nodes seem to only want to talk to other multi-instance nodes.
 
 Lets add the first node:
 ```
