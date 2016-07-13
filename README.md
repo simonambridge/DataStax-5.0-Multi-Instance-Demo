@@ -38,7 +38,7 @@ There is a separate conf file to set ulimits for the cassandra user
 ```
 sudo vi /etc/security/limits.d/cassandra.conf
 ```
-Add up update the entries in there to look like this:
+Add or update the entries in there to look like this:
 ```
 vagrant - memlock unlimited
 vagrant - nofile 100000
