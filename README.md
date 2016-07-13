@@ -218,7 +218,7 @@ Check it:
 sudo tail -100 /var/log/dse-node2/system.log
 ```
 
-How does my cluster look?
+How does my cluster look? Notice how the machine ID is displayed when you have more than one node in a cluster - so you know where your nodes are running:
 ```
 sudo dse dse-node1 dsetool ring
 Server ID          Address          DC                   Rack         Workload             Graph  Status  State    Load             Owns                 Token                                        Health [0,1]
