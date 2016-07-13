@@ -4,6 +4,8 @@ The new Multi-Instance feature released with DSE 5.0 allows for the simple deplo
 
 This helps customer ensure that large hardware resources are effectively utilized for database applications, and making more efficient use of hardware can help reduce overall project cost.
 
+DataStax Multi-Instance documentation can be found here: https://docs.datastax.com/en/latest-dse/datastax_enterprise/multiInstance/configMultiInstance.html
+
 ##Build a DSE Node##
 You can use a bare machine, an empty VM, a docker image, whatever. I recommend at least a couple of CPU's and 6GB+ prefereably 8GB.
 
