@@ -1,9 +1,8 @@
 #DSE 5.0 Multi-Instance Demo#
 
-The new Multi-Instance feature relased with DSE 5.0 allows the simple deployment of multiple DSE instances on a single machine.
+The new Multi-Instance feature released with DSE 5.0 allows for the simple deployment of multiple DSE instances on a single machine.
 
-This helps customer ensure that large hardware resources are effectively utilized for database applications.
-Making more efficient use of hardware Helps reduce hardware cost.
+This helps customer ensure that large hardware resources are effectively utilized for database applications, and making more efficient use of hardware can help reduce overall project cost.
 
 ##Build a DSE Node##
 You can use a bare machine, an empty VM, a docker image, whatever. I recommend at least a couple of CPU's and 6GB+ prefereably 8GB.
