@@ -133,6 +133,9 @@ Although ```add-node``` told you that it was setting up the JMX port, I found th
 I set the port on the first node just so that it doesnt conflict with the port used by the default dse service that I might want to start one day.
 
 ###Set the Node 1 JMX port ```JMX_PORT="7299"```###
+The nodetool utility communicates through JMX on port 7199. We need to change it for our instance. 
+
+>As though its running on a different host IP, you should theoretically be able to use 7199, but I found that nodetool didnt recognise the aliases but woud bind with the JMX address e.g. ```nodetool -p 7299```)
 
 Edit the cassandra-emv.sh file for this node.
 
@@ -140,6 +143,9 @@ Search for 7199 and change it to 7299
 
 ```
 sudo vi /etc/dse-node1/cassandra/cassandra-env.sh
+
+JMX_PORT="7299"
+JVM_OPTS="$JVM_OPTS -Djava.rmi.server.hostname=127.0.0.2"
 ```
 
 ###Start The Node 1 Service###
@@ -197,7 +203,7 @@ Done.
 
 ###Set the Node 2 JMX port ```JMX_PORT="7399"```###
 
-Search for 7199 and change it to 7399
+Search for 7199 and change it to 7399, and set the JMX hostname:
 
 ```
 sudo vi /etc/dse-node2/cassandra/cassandra-env.sh
@@ -271,7 +277,7 @@ Done.
 
 Set the jmx port JMX_PORT="7499"
 
-Search for 7199 and change it to 7499
+Search for 7199 and change it to 7499, and set the JMX hostname:
 
 ```
 sudo vi /etc/dse-node3/cassandra/cassandra-env.sh
@@ -344,6 +350,40 @@ cqlsh> select data_center from system.local;
 ```
 
 
+##Connect with JMX
+
+We can check the JMX parameters in use in the process JVM Arguments:
+```"-Djava.rmi.server.hostname=127.0.0.2, -Dcassandra.jmx.local.port=7299,"```
+
+Use the JMX port with nodetool to connect:
+
+```
+nodetool -p 7299 status
+Datacenter: Cassandra
+=====================
+Status=Up/Down
+|/ State=Normal/Leaving/Joining/Moving
+--  Address    Load       Tokens       Owns    Host ID                               Rack
+UN  127.0.0.2  18.29 MB   1            ?       52840937-5fe7-4586-85c3-51077a4dfc35  rack1
+UN  127.0.0.3  15.38 MB   1            ?       4a1985eb-075e-43da-8a9f-d13717d371ff  rack1
+
+Note: Non-system keyspaces don't have the same replication settings, effective ownership information is meaningless
+```
+Check that JMX is up for node1:
+```
+netstat -tulpn | grep 7299
+(No info could be read for "-p": geteuid()=1000 but you should be root.)
+tcp        0      0 127.0.0.1:7299          0.0.0.0:*               LISTEN      -
+```
+
+And for node2:
+```
+netstat -tulpn | grep 7399
+(No info could be read for "-p": geteuid()=1000 but you should be root.)
+tcp        0      0 127.0.0.1:7399          0.0.0.0:*               LISTEN
+```
+
+*See my other repo for details on installing and configuring opscenter and datastax-agent for multi-instance*
 
 ##Things go wrong sometimes - if you need to remove a node....##
 
