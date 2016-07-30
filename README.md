@@ -256,7 +256,43 @@ cqlsh> select data_center from system.local;
    Cassandra
 (1 rows)
 ```
+The gossip info shows we are up on our IP aliases:
+```
+sudo nodetool -p 7299 gossipinfo
+/127.0.0.2
+  generation:1469729834
+  heartbeat:312526
+  STATUS:18:NORMAL,-9098225573757054999
+  LOAD:312403:2.6772283E7
+  SCHEMA:35:335c1225-bfd5-3a7a-83d4-8cafde713850
+  DC:54:Cassandra
+  RACK:12:rack1
+  RELEASE_VERSION:4:3.0.7.1159
+  RPC_ADDRESS:3:127.0.0.2
+  X_11_PADDING:264567:{"dse_version":"5.0.1","workload":"Cassandra","server_id":"08-00-27-88-0C-A6","graph":false,"active":"true","health":0.9}
+  SEVERITY:312528:0.0
+  NET_VERSION:1:10
+  HOST_ID:2:52840937-5fe7-4586-85c3-51077a4dfc35
+  RPC_READY:59:true
+  TOKENS:17:<hidden>
+/127.0.0.3
+  generation:1469729819
+  heartbeat:312568
+  STATUS:20:NORMAL,-9024954150119957189
+  LOAD:312399:2.423628E7
+  SCHEMA:79:335c1225-bfd5-3a7a-83d4-8cafde713850
+  DC:67:Cassandra
+  RACK:12:rack1
+  RELEASE_VERSION:4:3.0.7.1159
+  RPC_ADDRESS:3:127.0.0.3
+  X_11_PADDING:264770:{"dse_version":"5.0.1","workload":"Cassandra","server_id":"08-00-27-88-0C-A6","graph":false,"active":"true","health":0.9}
+  SEVERITY:312567:0.0
+  NET_VERSION:1:10
+  HOST_ID:2:4a1985eb-075e-43da-8a9f-d13717d371ff
+  RPC_READY:81:true
+  TOKENS:19:<hidden>
 ##Add Node 3##
+```
 
 Now we're going to create a new multi-instance managed node, but this time in a different cluster.
 
