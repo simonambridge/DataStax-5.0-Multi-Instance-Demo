@@ -113,7 +113,7 @@ Here you set whether you want it to be a Cassandra, Spark, Solr node etc:
 > ignore this if you just want Cassandra
 
 ```
-sudo cat /etc/default/dse-node1
+sudo vi /etc/default/dse-node1
 ```
 
 Data lives here:
@@ -137,7 +137,7 @@ The nodetool utility communicates through JMX on port 7199. We need to change it
 
 >As though its running on a different host IP, you should theoretically be able to use 7199, but I found that nodetool didnt recognise the aliases but woud bind with the JMX address e.g. ```nodetool -p 7299```)
 
-Edit the cassandra-emv.sh file for this node.
+Edit the cassandra-env.sh file for this node.
 
 Search for 7199 and change it to 7299
 
