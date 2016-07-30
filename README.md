@@ -294,6 +294,8 @@ sudo nodetool -p 7299 gossipinfo
 ##Add Node 3##
 ```
 
+##Add Node 3 - Standalone##
+
 Now we're going to create a new multi-instance managed node, but this time in a different cluster.
 
 Same command as before, different cluster name, different virtual IP address, and we don't have a seed address.
