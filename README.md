@@ -35,7 +35,7 @@ Now log into the DSE node. For the vagrant build use:
 vagrant ssh dse-node
 ```
 ###Update ulimits###
-You first need to update the ulimits so that your vargrant user (or whatever OS cassandra username you've used) can start DSE.
+You first need to update the ulimits so that your vargrant user (or whatever OS cassandra username you'll use) can start DSE.
 There is a separate conf file to set ulimits for the cassandra user
 ```
 sudo vi /etc/security/limits.d/cassandra.conf
