@@ -203,10 +203,12 @@ Done.
 
 ###Set the Node 2 JMX port ```JMX_PORT="7399"```###
 
-Search for 7199 and change it to 7399, and set the JMX hostname:
+Search for 7199 and change it to 7399, and set the JMX hostname to the IP alias for this instance:
 
 ```
 sudo vi /etc/dse-node2/cassandra/cassandra-env.sh
+JMX_PORT="7399"
+JVM_OPTS="$JVM_OPTS -Djava.rmi.server.hostname=127.0.0.3"
 ```
 
 ###Start The Node 2 Service###
@@ -315,10 +317,12 @@ Done.
 
 Set the jmx port JMX_PORT="7499"
 
-Search for 7199 and change it to 7499, and set the JMX hostname:
+Search for 7199 and change it to 7499, and set the JMX hostname to the IP alias for this instance:
 
 ```
 sudo vi /etc/dse-node3/cassandra/cassandra-env.sh
+JMX_PORT="7499"
+JVM_OPTS="$JVM_OPTS -Djava.rmi.server.hostname=127.0.0.4"
 ```
 
 Check your different cluster name ```cluster_name: NewCluster```
