@@ -1,0 +1,11 @@
+---
+- hosts: dse-node
+  user: vagrant
+  become: True
+  tasks:
+
+  - include: tasks/dependencies.yml
+  - include: tasks/repositories.yml
+  - include: tasks/java-install.yml
+  - include: tasks/dse-install.yml
+#  - include: tasks/start-dse.yml

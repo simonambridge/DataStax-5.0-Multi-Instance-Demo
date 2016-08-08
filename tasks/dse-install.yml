@@ -1,0 +1,3 @@
+- name: installing datastax enterprise
+  apt: pkg=dse-full state=installed update-cache=yes
+  register: dse
