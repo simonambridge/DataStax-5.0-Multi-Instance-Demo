@@ -49,7 +49,7 @@ vagrant - as unlimited
 ```
 Now log out and ssh back into the box as the vagrant user in order to pick up the new ulimits.
 
-###Create Vierual IP Addresses For The Instances###
+###Create Virtual IP Addresses For The Instances###
 Back in the vagrant VM, we need to create some IP aliases for our new instances - use the ```ifconfig``` command:
 ```
 ifconfig lo:0 127.0.0.2 netmask 255.0.0.0 up
