@@ -135,7 +135,7 @@ I set the port on the first node just so that it doesnt conflict with the port u
 ###Set the Node 1 JMX port ```JMX_PORT="7299"```###
 The nodetool utility communicates through JMX on port 7199. We need to change it for our instance. 
 
->As though its running on a different host IP, you should theoretically be able to use 7199, but I found that nodetool didnt recognise the aliases but woud bind with the JMX address e.g. ```nodetool -p 7299```)
+>As its running on a different host IP, you should theoretically be able to use 7199, but I found that nodetool didn't recognise the aliases but would bind with just the JMX address e.g. ```nodetool -p 7299```)
 
 Edit the cassandra-env.sh file for this node.
 
