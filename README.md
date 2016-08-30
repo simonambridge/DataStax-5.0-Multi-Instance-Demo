@@ -11,11 +11,11 @@ You can use a bare machine, an empty VM, a docker image, whatever. I recommend a
 
 Most leading flavours of Linux supported. Here I'm using Ubuntu Precise64 that comes with the build I'm using.
 
-I'm using a Virtualbox VM created using Vagrant based on Joel Jacobson's vagrant build that provisions a single large node designed to support multiple instances of DataStax Enterprise. The repo for that can be found here: https://github.com/simonambridge/vagrant-DSE-multi-instance
+I'm using a Virtualbox VM created using Vagrant that provisions a single large node designed to support multiple instances of DataStax Enterprise. The repo for that can be found here: https://github.com/simonambridge/vagrant-DSE-multi-instance
 
->For reference Joel's great multi-node vagrant build is here: https://github.com/joeljacobson/vagrant-ansible-cassandra if you want to a three node cluster with an opscentre VM.
+>This Vagrant build is based on Joel Jacobson's great multi-node vagrant build that cerates a three node cluster with an opscentre VM. You'll find it described here: https://github.com/joeljacobson/vagrant-ansible-cassandra
 
-Whatever you're using, start your VM and move on to the next section for configuration details.
+Whatever you're using, start your VM or environment and move on to the next section for configuration details.
 
 If you're using vagrant, after you've built the machine or vagrant virtual box, if it isn't running, start it with:
 
