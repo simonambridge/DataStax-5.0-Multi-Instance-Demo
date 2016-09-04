@@ -72,7 +72,7 @@ Now you can use e.g. ```cqlsh node3```.
 
 ###Use the ````add-node``` utility to add a multi-instance node
 
-You can call your node what you like but it will be prefixed autoatically with ```dse-```. So ```node1``` will be ```dse-node1``` etc.
+You can call your node what you like but it will be prefixed automatically with ```dse-```. So ```node1``` will be ```dse-node1``` etc.
 
 We don't have a valid seed address here as we're creating the first node.
 
