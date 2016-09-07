@@ -425,7 +425,7 @@ netstat -tulpn | grep 7399
 tcp        0      0 127.0.0.1:7399          0.0.0.0:*               LISTEN
 ```
 
-*See my other repo for details on installing and configuring opscenter and datastax-agent for multi-instance*
+*See my other repo <a https://github.com/simonambridge/DataStax-5.0-Multi-Instance-OpsCenter-and-datastax-agent> here /a> for details on installing and configuring opscenter and datastax-agent for multi-instance*
 
 ##Things go wrong sometimes - if you need to remove a node....##
 
