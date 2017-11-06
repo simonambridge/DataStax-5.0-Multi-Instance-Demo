@@ -1,4 +1,4 @@
-#DSE 5.0 Multi-Instance Demo#
+# DSE 5.0 Multi-Instance Demo
 
 The new Multi-Instance feature released with DSE 5.0 allows for the simple deployment of multiple DSE instances on a single machine.
 
@@ -6,7 +6,7 @@ This helps customer ensure that large hardware resources are effectively utilize
 
 DataStax Multi-Instance documentation can be found here: https://docs.datastax.com/en/latest-dse/datastax_enterprise/multiInstance/configMultiInstance.html
 
-##Build a DSE Node##
+## Build a DSE Node
 You can use a bare machine, an empty VM, a docker image, whatever. I recommend at least a couple of CPU's and 6GB+ prefereably 8GB.
 
 Most leading flavours of Linux supported. Here I'm using Ubuntu Precise64 that comes with the build I'm using.
@@ -28,13 +28,13 @@ vagrant global-status
 ```
 
 
-##Configure The VM for DSE##
+## Configure The VM for DSE
 
 Now log into the DSE node. For the vagrant build use:
 ```
 vagrant ssh dse-node
 ```
-###Update ulimits###
+### Update ulimits
 You first need to update the ulimits so that your vargrant user (or whatever OS cassandra username you'll use) can start DSE.
 There is a separate conf file to set ulimits for the cassandra user
 ```
@@ -49,7 +49,7 @@ vagrant - as unlimited
 ```
 Now log out and ssh back into the box as the vagrant user in order to pick up the new ulimits.
 
-###Create Virtual IP Addresses For The Instances###
+### Create Virtual IP Addresses For The Instances
 Back in the vagrant VM, we need to create some IP aliases for our new instances - use the ```ifconfig``` command:
 ```
 ifconfig lo:0 127.0.0.2 netmask 255.0.0.0 up
@@ -57,7 +57,7 @@ ifconfig lo:1 127.0.0.3 netmask 255.0.0.0 up
 ifconfig lo:2 127.0.0.4 netmask 255.0.0.0 up
 ```
 
-###Create Aliases for the Virtual IPs###
+### Create Aliases for the Virtual IPs
 Update ```/etc/hosts``` to make it easier with aliases:
 ```
 127.0.0.2 node1 dse-node1
@@ -68,9 +68,9 @@ Update ```/etc/hosts``` to make it easier with aliases:
 Now you can use e.g. ```cqlsh node3```.
 
 
-##Add Node 1##
+## Add Node 1
 
-###Use the ````add-node``` utility to add a multi-instance node
+### Use the ````add-node``` utility to add a multi-instance node
 
 You can call your node what you like but it will be prefixed automatically with ```dse-```. So ```node1``` will be ```dse-node1``` etc.
 
@@ -132,7 +132,7 @@ Although ```add-node``` told you that it was setting up the JMX port, I found th
 
 I set the port on the first node just so that it doesnt conflict with the port used by the default dse service that I might want to start one day.
 
-###Set the Node 1 JMX port ```JMX_PORT="7299"```###
+### Set the Node 1 JMX port ```JMX_PORT="7299"```
 The nodetool utility communicates through JMX on port 7199. We need to change it for our instance. 
 
 >As its running on a different host IP, you should theoretically be able to use 7199, but I found that nodetool didn't recognise the aliases but would bind with just the JMX address e.g. ```nodetool -p 7299```)
@@ -148,7 +148,7 @@ JMX_PORT="7299"
 JVM_OPTS="$JVM_OPTS -Djava.rmi.server.hostname=127.0.0.2"
 ```
 
-###Start The Node 1 Service###
+### Start The Node 1 Service
 ```
 sudo service dse-node1 start
  * Starting DSE daemons (dse-node1) dse-node1
@@ -183,7 +183,7 @@ Use HELP for help.
 cqlsh> exit
 ```
 
-##Add Node 2##
+## Add Node 2
 
 Same command as before, same cluster name, this time with the next available virtual IP address.
 This time we  point to the first node that we created to use it as a seed node
@@ -201,7 +201,7 @@ Warning: Spark shuffle service port not set. Spark nodes will use the default bi
 Done.
 ```
 
-###Set the Node 2 JMX port ```JMX_PORT="7399"```###
+### Set the Node 2 JMX port ```JMX_PORT="7399"```
 
 Search for 7199 and change it to 7399, and set the JMX hostname to the IP alias for this instance:
 
@@ -211,7 +211,7 @@ JMX_PORT="7399"
 JVM_OPTS="$JVM_OPTS -Djava.rmi.server.hostname=127.0.0.3"
 ```
 
-###Start The Node 2 Service###
+### Start The Node 2 Service
 
 ```
 sudo service dse-node2 start
@@ -293,10 +293,9 @@ sudo nodetool -p 7299 gossipinfo
   HOST_ID:2:4a1985eb-075e-43da-8a9f-d13717d371ff
   RPC_READY:81:true
   TOKENS:19:<hidden>
-##Add Node 3##
 ```
 
-##Add Node 3 - Standalone##
+## Add Node 3 - Standalone
 
 Now we're going to create a new multi-instance managed node, but this time in a different cluster.
 
@@ -330,7 +329,7 @@ Check your different cluster name ```cluster_name: NewCluster```
 sudo vi /etc/dse-node3/cassandra/cassandra.yaml
 ```
 
-###Start The Node 3 Service###
+### Start The Node 3 Service
 ```
 sudo service dse-node3 start
  * Starting DSE daemons (dse-node3) dse-node3
@@ -392,7 +391,7 @@ cqlsh> select data_center from system.local;
 ```
 
 
-##Connect with JMX
+## Connect with JMX
 
 We can check the JMX parameters in use in the process JVM Arguments:
 ```"-Djava.rmi.server.hostname=127.0.0.2, -Dcassandra.jmx.local.port=7299,"```
@@ -427,7 +426,7 @@ tcp        0      0 127.0.0.1:7399          0.0.0.0:*               LISTEN
 
 *See my other repo <a href="https://github.com/simonambridge/DataStax-5.0-Multi-Instance-OpsCenter-and-datastax-agent"> here </a> for details on installing and configuring opscenter and datastax-agent for multi-instance*
 
-##Things go wrong sometimes - if you need to remove a node....##
+## Things go wrong sometimes - if you need to remove a node....
 
 Use the ```remove-node``` tool:
 ```
