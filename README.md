@@ -13,7 +13,7 @@ Most leading flavours of Linux supported. Here I'm using Ubuntu Precise64 that c
 
 I'm using a Virtualbox VM created using Vagrant that provisions a single large node designed to support multiple instances of DataStax Enterprise. The repo for that can be found here: https://github.com/simonambridge/vagrant-DSE-multi-instance
 
->This Vagrant build is based on Joel Jacobson's great multi-node vagrant build that cerates a three node cluster with an opscentre VM. You'll find it described here: https://github.com/joeljacobson/vagrant-ansible-cassandra
+>This Vagrant build is based upon Joel Jacobson's original vagrant build that creates a three node cluster with an opscentre VM. You'll find it described here: https://github.com/joeljacobson/vagrant-ansible-cassandra (here we'll create a single node with multiple installs of DSE)
 
 Whatever you're using, start your VM or environment and move on to the next section for configuration details.
 
