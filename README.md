@@ -70,7 +70,7 @@ Now you can use e.g. ```cqlsh node3```.
 
 ## Add Node 1
 
-### Use the ````add-node``` utility to add a multi-instance node
+### Use the ```add-node``` utility to add a multi-instance node
 
 You can call your node what you like but it will be prefixed automatically with ```dse-```. So ```node1``` will be ```dse-node1``` etc.
 
