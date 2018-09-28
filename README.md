@@ -2,12 +2,12 @@
 
 The new Multi-Instance feature released with DSE 5.0 allows for the simple deployment of multiple DSE instances on a single machine.
 
-This helps customer ensure that large hardware resources are effectively utilized for database applications, and making more efficient use of hardware can help reduce overall project costs.
+This helps customers to ensure that large hardware resources are effectively utilized for database applications, and making more efficient use of hardware can help reduce overall project costs.
 
 DataStax Multi-Instance documentation can be found here: https://docs.datastax.com/en/latest-dse/datastax_enterprise/multiInstance/configMultiInstance.html
 
 ## Build a DSE Node
-You can use a bare machine, an empty VM, a docker image, whatever. I recommend at least a couple of CPU's and 6GB+ prefereably 8GB.
+You can use a bare machine, an empty VM, a docker image, whatever. I recommend at least a couple of CPU's and 6GB+ preferably 8GB.
 
 Most leading flavours of Linux supported. Here I'm using Ubuntu Precise64 that comes with the build I'm using.
 
